@@ -32,6 +32,4 @@ library(DESeq2)
 coldata <- y$samples[,"condition",drop=FALSE]
 coldata$condition <- factor(coldata$condition)
 dds <- DESeqDataSetFromMatrix(norm.cts, colData=coldata, ~condition)
-vsd <- vst(dds, blind=FALSE)
-plotPCA(vsd)
-
+save(dds, file="dds.rda")
