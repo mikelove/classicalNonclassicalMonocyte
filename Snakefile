@@ -6,14 +6,14 @@ rule all:
   input: expand("quants/{run}/quant.sf", run=RUNS)
 
 rule salmon_index:
-    input: "gencode.v10.pc_transcripts.fa.gz"
-    output: directory("gencode.v10-salmon_1.4.0")
+    input: "gencode.v36.transcripts.fa.gz"
+    output: directory("gencode.v36-salmon_1.4.0")
     shell: "{SALMON} index --gencode -p 8 -t {input} -i {output}"
 
 rule salmon_quant:
     input:
         read = "fastq/{sample}.fastq.gz",
-        index = "gencode.v10-salmon_1.4.0"
+        index = "gencode.v36-salmon_1.4.0"
     output:
         "quants/{sample}/quant.sf"
     params:
