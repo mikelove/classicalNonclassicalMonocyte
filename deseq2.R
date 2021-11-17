@@ -53,8 +53,9 @@ res2 <- results(dds2, cooks=FALSE)
 summary(res1)
 summary(res2)
 # test at nominal FDR and see how many sign changes
-alpha <- 0.01
+alpha <- 0.05
 sig <- res1$padj < alpha
 table(gold=sign(res1$log2FoldChange) == sign(res2$log2FoldChange), test=sig)
-plot(res1$log2FoldChange[sig], res2$log2FoldChange[sig], cex=.1)
+plot(res1$log2FoldChange[sig], res2$log2FoldChange[sig],
+     xlab="LFC small subset", ylab="LFC larger held-out", cex=.2)
 abline(0,1); abline(h=0, v=0)
