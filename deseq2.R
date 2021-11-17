@@ -29,8 +29,11 @@ for (i in 1:2) {
   colData(dds)[w] <- pData(set)[w]
 }
 design(dds) <- ~W_1 + W_2 + condition
-DESeq2::plotPCA(vsd, intgroup="W_1", ntop=2000)
-DESeq2::plotPCA(vsd, intgroup="W_2", ntop=2000)
+
+pca1 <- DESeq2::plotPCA(vsd, intgroup="W_1", ntop=2000)
+pca2 <- DESeq2::plotPCA(vsd, intgroup="W_2", ntop=2000)
+library(patchwork)
+pca1 + pca2
 
 # select 'n' samples from each group
 n <- 5
